@@ -6,10 +6,7 @@ const path = require('path');
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/PlacementPortal', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect('mongodb://localhost:27017/PlacementPortal')
 .then(() => console.log('MongoDB connected'))
 .catch((err) => console.error('MongoDB connection error:', err));
 
@@ -329,11 +326,38 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
 });
 
-// Start server
-app.listen(PORT, () => {
+// Start server with error handling
+const server = app.listen(PORT, () => {
   console.log(`🎓 Placement Portal server running on http://localhost:${PORT}`);
   console.log(`📁 Frontend served from: ${path.join(__dirname, '../frontend')}`);
   console.log(`📊 Data stored in: ${path.join(__dirname, 'data')}`);
 });
+
+server.on('error', (err) => {
+  if (err && err.code === 'EADDRINUSE') {
+    console.error(`ERROR: Port ${PORT} is already in use. Choose a different PORT or stop the process using it.`);
+    console.error('To free the port on Windows (PowerShell):');
+    console.error('  netstat -aon | findstr :3000');
+    console.error('  taskkill /PID <PID> /F');
+    process.exit(1);
+  }
+  console.error('Server error:', err);
+  process.exit(1);
+});
+
+// Graceful shutdown handlers
+const shutdown = (signal) => {
+  console.log(`Received ${signal}. Shutting down server...`);
+  server.close(() => {
+    console.log('Server closed.');
+    mongoose.disconnect(false, () => {
+      console.log('MongoDB disconnected.');
+      process.exit(0);
+    });
+  });
+};
+
+process.on('SIGINT', () => shutdown('SIGINT'));
+process.on('SIGTERM', () => shutdown('SIGTERM'));
 
 module.exports = app;
