@@ -41,6 +41,9 @@ function initializeApp() {
             initializeAuthPage();
             break;
     }
+
+    // Wire hero buttons if present
+    wireHeroButtons();
 }
 
 function getCurrentPage() {
@@ -79,6 +82,26 @@ function initializeNavigation() {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', logout);
     }
+
+    // Ensure nav auth link reflects current session immediately
+    updateNavAuthLink();
+    updateRoleNavVisibility();
+}
+
+// Show/hide nav links based on role
+function updateRoleNavVisibility() {
+    // Show student portal only for logged-in students
+    const studentLink = document.querySelectorAll('.nav-link').forEach(a => {
+        const href = a.getAttribute('href') || '';
+        if (href.indexOf('student-dashboard.html') !== -1) {
+            if (!currentUser || currentUser.role !== 'student') a.classList.add('hidden-nav');
+            else a.classList.remove('hidden-nav');
+        }
+        if (href.indexOf('company-dashboard.html') !== -1) {
+            if (!currentUser || currentUser.role !== 'company') a.classList.add('hidden-nav');
+            else a.classList.remove('hidden-nav');
+        }
+    });
 }
 
 function checkUserSession() {
@@ -96,13 +119,99 @@ function updateUIForLoggedInUser() {
     if (currentUser) {
         currentRole = currentUser.role;
     }
+    // Update the navigation auth link (Login -> Logout)
+    updateNavAuthLink();
+    updateRoleNavVisibility();
 }
 
 function logout() {
     localStorage.removeItem('currentUser');
     currentUser = null;
     currentRole = null;
+    // Update nav immediately and redirect to home
+    updateNavAuthLink();
+    updateRoleNavVisibility();
+    showToast('You have been logged out');
     window.location.href = 'index.html';
+}
+
+function showToast(message, timeout = 3000) {
+    let t = document.getElementById('appToast');
+    if (!t) {
+        t = document.createElement('div');
+        t.id = 'appToast';
+        t.className = 'toast';
+        document.body.appendChild(t);
+    }
+    t.textContent = message;
+    t.style.display = 'block';
+    setTimeout(() => {
+        t.style.display = 'none';
+    }, timeout);
+}
+
+function wireHeroButtons() {
+    const getStarted = document.getElementById('getStartedBtn');
+    const browse = document.getElementById('browseDrivesBtn');
+
+    if (getStarted) {
+        getStarted.addEventListener('click', function(e) {
+            if (currentUser) {
+                // If logged in, go to the appropriate dashboard
+                e.preventDefault();
+                switch(currentUser.role) {
+                    case 'student': window.location.href = 'student-dashboard.html'; break;
+                    case 'company': window.location.href = 'company-dashboard.html'; break;
+                    case 'admin': window.location.href = 'admin-dashboard.html'; break;
+                    default: window.location.href = 'auth.html';
+                }
+            }
+            // otherwise default link already goes to auth.html
+        });
+    }
+
+    if (browse) {
+        browse.addEventListener('click', function(e) {
+            if (!currentUser) return; // guests can still browse placements
+            // If logged in as student and on placements, let them browse normally
+            // No special behavior needed, but keep hook for future features
+        });
+    }
+}
+
+/**
+ * Update the navigation auth link to show Login or Logout depending on session
+ */
+function updateNavAuthLink() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    if (!navLinks) return;
+
+    navLinks.forEach(a => {
+        const href = a.getAttribute('href');
+        const text = (a.textContent || '').trim().toLowerCase();
+
+        const isAuthLink = (href && href.indexOf('auth.html') !== -1) || text === 'login' || text === 'logout';
+        if (!isAuthLink) return;
+
+        // Clear previous logout id if present
+        if (!currentUser) {
+            a.textContent = 'Login';
+            a.setAttribute('href', 'auth.html');
+            if (a.id === 'logoutBtn') a.id = '';
+            // remove any attached click handlers by cloning
+            const clean = a.cloneNode(true);
+            a.parentNode.replaceChild(clean, a);
+        } else {
+            a.textContent = 'Logout';
+            a.setAttribute('href', '#');
+            a.id = 'logoutBtn';
+            // ensure click handler triggers logout (remove old then add)
+            const clean = a.cloneNode(true);
+            a.parentNode.replaceChild(clean, a);
+            const newLink = document.getElementById('logoutBtn');
+            if (newLink) newLink.addEventListener('click', function(e){ e.preventDefault(); logout(); });
+        }
+    });
 }
 
 // ===== HOME PAGE FUNCTIONALITY =====
@@ -459,7 +568,10 @@ async function handleLogin(e) {
         if (data.success) {
             currentUser = data.data;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            
+            // Update UI and show toast
+            updateNavAuthLink();
+            updateRoleNavVisibility();
+            showToast('Login successful');
             // Redirect based on role
             redirectAfterLogin(currentUser.role);
         } else {

@@ -90,6 +90,24 @@ p {
     cursor: not-allowed;
 }
 
+/* Toast notification */
+.toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    z-index: 3000;
+    display: none;
+    font-size: 0.95rem;
+}
+
+/* Utility class to hide nav items */
+.hidden-nav { display: none !important; }
+
 /* Loading Spinner */
 .loading-spinner {
     width: 16px;
@@ -133,10 +151,18 @@ p {
     margin: 0;
 }
 
+.nav-logo {
+    flex: 0 0 auto; /* avoid stretching */
+    margin-right: 1rem;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.75rem; /* equal spacing between items */
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 0;
 }
 
 .nav-link {
@@ -145,6 +171,8 @@ p {
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
+    padding: 0.5rem 0; /* only vertical padding, no horizontal */
+    display: inline-block;
 }
 
 .nav-link:hover,
@@ -1080,6 +1108,11 @@ p {
 .role-selection {
     text-align: center;
     margin-bottom: 3rem;
+    padding: 28px 20px; /* space around the role cards */
+    box-sizing: border-box;
+    background: #fff; /* subtle white panel so padding shows */
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
 }
 
 .role-cards {
@@ -1088,7 +1121,8 @@ p {
     gap: 2rem;
     justify-content: center;
     align-items: stretch;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* allow wrapping on smaller screens */
+    padding: 8px 4px; /* small inner spacing so cards don't touch the panel edges */
 }
 
 .role-card {
@@ -1110,6 +1144,24 @@ p {
     cursor: pointer;
     transition: all 0.3s ease;
     border: 3px solid transparent;
+}
+
+@media (max-width: 900px) {
+    /* ensure the role cards wrap and fit nicely on tablets / small laptops */
+    .role-cards {
+        gap: 16px;
+        justify-content: center;
+    }
+    .role-card {
+        min-width: 220px;
+        max-width: 440px;
+    }
+}
+
+@media (max-width: 480px) {
+    .role-selection { padding: 18px 12px; }
+    .role-cards { gap: 12px; }
+    .role-card { min-width: unset; max-width: 100%; width: 100%; }
 }
 
 .role-card:hover {
@@ -1703,4 +1755,53 @@ p {
     .profile-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* --- Spacing & layout overrides for consistent vertical rhythm --- */
+:root {
+    --section-vertical: 60px; /* base vertical spacing for sections */
+}
+
+/* Make hero, page header and auth sections use the same vertical rhythm */
+.hero {
+    padding: calc(var(--section-vertical) + 20px) 0; /* slightly larger hero */
+    min-height: 60vh; /* reduce from 80vh so content doesn't appear too tall */
+}
+
+.page-header,
+.auth-section {
+    padding: var(--section-vertical) 0;
+    min-height: auto; /* allow content to determine height */
+}
+
+/* Filters panel should visually sit below the header with balanced spacing */
+.filters {
+    background: white;
+    padding: 1rem 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    margin-top: -36px; /* slight overlap with header for a cohesive look */
+}
+
+.filters-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Tone down the search box shadow on placement drives for a cleaner feel */
+.filters .search-box {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    border-radius: 40px;
+    padding: 10px;
+}
+
+/* Ensure auth form area doesn't feel cramped on small screens */
+@media (max-width: 768px) {
+    .hero { padding: calc(var(--section-vertical) - 10px) 0; }
+    .filters { margin-top: 0; }
+    .filters-container { flex-direction: column; align-items: stretch; }
+    .filters .search-box { width: 100%; }
 }
