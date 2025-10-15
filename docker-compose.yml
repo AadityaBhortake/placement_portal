@@ -8,6 +8,12 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --eval \"db.adminCommand({ ping: 1 })\" || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   backend:
     build: .
     container_name: placement_backend
@@ -20,5 +26,8 @@ services:
       - mongo
     volumes:
       - .:/app
+      - node_modules_backend:/app/node_modules
+
 volumes:
   mongo_data:
+  node_modules_backend:

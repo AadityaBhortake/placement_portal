@@ -6,9 +6,31 @@ const path = require('path');
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/PlacementPortal')
-.then(() => console.log('MongoDB connected'))
-.catch((err) => console.error('MongoDB connection error:', err));
+// Use MONGO_URL from environment (set in docker-compose) or fallback to localhost
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/PlacementPortal';
+
+// Retry connect because docker-compose 'depends_on' doesn't guarantee DB readiness
+const connectWithRetry = async (retries = 10, delayMs = 3000) => {
+  for (let i = 0; i < retries; i++) {
+    try {
+      // Mongoose v6+ uses sensible defaults; don't pass deprecated options.
+      await mongoose.connect(MONGO_URL);
+      console.log('MongoDB connected to', MONGO_URL);
+      return;
+    } catch (err) {
+      console.error(`MongoDB connection attempt ${i + 1} failed:`, err.message);
+      if (i < retries - 1) {
+        console.log(`Retrying in ${delayMs}ms...`);
+        await new Promise(res => setTimeout(res, delayMs));
+      } else {
+        console.error('All MongoDB connection attempts failed. Exiting.');
+        process.exit(1);
+      }
+    }
+  }
+};
+
+connectWithRetry();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
