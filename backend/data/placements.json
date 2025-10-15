@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "title": "Software Developer - Frontend",
+    "companyId": 1,
+    "companyName": "TechCorp Solutions",
+    "description": "We are looking for passionate Frontend Developers to join our dynamic team. You'll work on cutting-edge web applications using modern technologies.",
+    "requirements": {
+      "minimumCGPA": 7.0,
+      "eligibleDepartments": ["Computer Science", "Information Technology"],
+      "skillsRequired": ["JavaScript", "React", "HTML/CSS", "Git"],
+      "experienceLevel": "Fresher",
+      "preferredSkills": ["TypeScript", "Redux", "Material-UI"]
+    },
+    "jobDetails": {
+      "position": "Software Developer",
+      "ctc": "6.5 LPA",
+      "location": "Mumbai, Maharashtra",
+      "workMode": "Hybrid",
+      "bondPeriod": "2 years",
+      "joiningDate": "2024-07-01"
+    },
+    "selectionProcess": {
+      "rounds": ["Online Test", "Technical Interview", "HR Interview"],
+      "duration": "3 weeks"
+    },
+    "applicationDeadline": "2024-03-15T23:59:59.000Z",
+    "driveDate": "2024-03-20T09:00:00.000Z",
+    "status": "active",
+    "postedDate": "2024-02-01T10:00:00.000Z",
+    "applicationsCount": 45,
+    "maxApplications": 100
+  },
+  {
+    "id": 2,
+    "title": "Backend Developer - Java",
+    "companyId": 1,
+    "companyName": "TechCorp Solutions",
+    "description": "Join our backend team to develop robust and scalable server-side applications using Java and Spring Boot.",
+    "requirements": {
+      "minimumCGPA": 7.5,
+      "eligibleDepartments": ["Computer Science", "Information Technology"],
+      "skillsRequired": ["Java", "Spring Boot", "MySQL", "REST APIs"],
+      "experienceLevel": "Fresher",
+      "preferredSkills": ["Microservices", "AWS", "Docker"]
+    },
+    "jobDetails": {
+      "position": "Backend Developer",
+      "ctc": "7.0 LPA",
+      "location": "Mumbai, Maharashtra",
+      "workMode": "On-site",
+      "bondPeriod": "2 years",
+      "joiningDate": "2024-07-01"
+    },
+    "selectionProcess": {
+      "rounds": ["Online Test", "Technical Interview", "System Design", "HR Interview"],
+      "duration": "4 weeks"
+    },
+    "applicationDeadline": "2024-03-18T23:59:59.000Z",
+    "driveDate": "2024-03-25T09:00:00.000Z",
+    "status": "active",
+    "postedDate": "2024-02-05T11:30:00.000Z",
+    "applicationsCount": 32,
+    "maxApplications": 80
+  },
+  {
+    "id": 3,
+    "title": "Data Analyst",
+    "companyId": 2,
+    "companyName": "DataVision Analytics",
+    "description": "Seeking data enthusiasts to join our analytics team. Work with large datasets and create insights that drive business decisions.",
+    "requirements": {
+      "minimumCGPA": 8.0,
+      "eligibleDepartments": ["Computer Science", "Information Technology", "Mathematics", "Statistics"],
+      "skillsRequired": ["Python", "SQL", "Data Analysis", "Statistics"],
+      "experienceLevel": "Fresher",
+      "preferredSkills": ["R", "Tableau", "Machine Learning", "Excel"]
+    },
+    "jobDetails": {
+      "position": "Data Analyst",
+      "ctc": "8.0 LPA",
+      "location": "Bangalore, Karnataka",
+      "workMode": "Remote",
+      "bondPeriod": "1.5 years",
+      "joiningDate": "2024-06-15"
+    },
+    "selectionProcess": {
+      "rounds": ["Online Assessment", "Case Study", "Technical Interview", "Final Interview"],
+      "duration": "3 weeks"
+    },
+    "applicationDeadline": "2024-03-20T23:59:59.000Z",
+    "driveDate": "2024-03-28T10:00:00.000Z",
+    "status": "active",
+    "postedDate": "2024-02-08T09:15:00.000Z",
+    "applicationsCount": 28,
+    "maxApplications": 60
+  },
+  {
+    "id": 4,
+    "title": "Machine Learning Engineer",
+    "companyId": 2,
+    "companyName": "DataVision Analytics",
+    "description": "Join our ML team to develop and deploy machine learning models that solve real-world business problems.",
+    "requirements": {
+      "minimumCGPA": 8.5,
+      "eligibleDepartments": ["Computer Science", "Information Technology", "Mathematics"],
+      "skillsRequired": ["Python", "Machine Learning", "Deep Learning", "Statistics"],
+      "experienceLevel": "Fresher",
+      "preferredSkills": ["TensorFlow", "PyTorch", "Scikit-learn", "MLOps"]
+    },
+    "jobDetails": {
+      "position": "ML Engineer",
+      "ctc": "10.0 LPA",
+      "location": "Bangalore, Karnataka",
+      "workMode": "Hybrid",
+      "bondPeriod": "2 years",
+      "joiningDate": "2024-08-01"
+    },
+    "selectionProcess": {
+      "rounds": ["Online Test", "ML Assignment", "Technical Interview", "Panel Interview"],
+      "duration": "4 weeks"
+    },
+    "applicationDeadline": "2024-04-01T23:59:59.000Z",
+    "driveDate": "2024-04-10T09:00:00.000Z",
+    "status": "upcoming",
+    "postedDate": "2024-02-12T14:20:00.000Z",
+    "applicationsCount": 0,
+    "maxApplications": 40
+  },
+  {
+    "id": 5,
+    "title": "Full Stack Developer",
+    "companyId": 3,
+    "companyName": "InnovateTech Startups",
+    "description": "Looking for versatile developers to work on exciting startup projects. Great learning opportunity with direct impact on product development.",
+    "requirements": {
+      "minimumCGPA": 6.5,
+      "eligibleDepartments": ["Computer Science", "Information Technology"],
+      "skillsRequired": ["JavaScript", "React", "Node.js", "MongoDB"],
+      "experienceLevel": "Fresher",
+      "preferredSkills": ["Next.js", "GraphQL", "AWS", "Docker"]
+    },
+    "jobDetails": {
+      "position": "Full Stack Developer",
+      "ctc": "5.5 LPA",
+      "location": "Pune, Maharashtra",
+      "workMode": "On-site",
+      "bondPeriod": "1 year",
+      "joiningDate": "2024-06-01"
+    },
+    "selectionProcess": {
+      "rounds": ["Coding Challenge", "Technical Interview", "Founder Interview"],
+      "duration": "2 weeks"
+    },
+    "applicationDeadline": "2024-03-25T23:59:59.000Z",
+    "driveDate": "2024-04-02T10:00:00.000Z",
+    "status": "pending_approval",
+    "postedDate": "2024-02-15T16:45:00.000Z",
+    "applicationsCount": 12,
+    "maxApplications": 30
+  }
+]

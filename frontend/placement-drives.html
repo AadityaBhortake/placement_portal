@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Drives - University Placement Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🎓 PlacementPortal</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="placement-drives.html" class="nav-link active">Placement Drives</a>
+                </li>
+                <li class="nav-item">
+                    <a href="student-dashboard.html" class="nav-link">Student Portal</a>
+                </li>
+                <li class="nav-item">
+                    <a href="company-dashboard.html" class="nav-link">Company Portal</a>
+                </li>
+                <li class="nav-item">
+                    <a href="auth.html" class="nav-link">Login</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Placement Drives</h1>
+            <p>Explore current and upcoming placement opportunities from our partner companies</p>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters">
+        <div class="container">
+            <div class="filters-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search by company or position...">
+                    <button id="searchBtn" class="search-btn">🔍</button>
+                </div>
+                <div class="filter-group">
+                    <select id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="pending_approval">Pending Approval</option>
+                    </select>
+                    <select id="departmentFilter">
+                        <option value="">All Departments</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Mathematics">Mathematics</option>
+                    </select>
+                    <select id="ctcFilter">
+                        <option value="">All CTC Range</option>
+                        <option value="0-5">0-5 LPA</option>
+                        <option value="5-8">5-8 LPA</option>
+                        <option value="8-12">8-12 LPA</option>
+                        <option value="12+">12+ LPA</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Placement Drives Section -->
+    <section class="placements-section">
+        <div class="container">
+            <div id="placementsContainer" class="placements-grid">
+                <!-- Placement drives will be loaded here by JavaScript -->
+            </div>
+            <div id="noResults" class="no-results" style="display: none;">
+                <h3>No placement drives found</h3>
+                <p>Try adjusting your filters or search criteria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading placement drives...</p>
+    </div>
+
+    <!-- Placement Drive Modal -->
+    <div id="placementModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <!-- Placement details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🎓 PlacementPortal</h3>
+                    <p>Empowering students to achieve their career aspirations</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="placement-drives.html">Placement Drives</a></li>
+                        <li><a href="student-dashboard.html">Student Portal</a></li>
+                        <li><a href="auth.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: placements@university.edu</p>
+                    <p>Phone: +91-xxx-xxx-xxxx</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 University Placement Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

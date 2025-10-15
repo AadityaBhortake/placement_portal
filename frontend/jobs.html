@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs - Job Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>JobPortal</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="jobs.html" class="nav-link active">Jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a href="post-job.html" class="nav-link">Post Job</a>
+                </li>
+                <li class="nav-item">
+                    <a href="auth.html" class="nav-link">Login/Register</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Job Listings</h1>
+            <p>Explore all available job opportunities</p>
+        </div>
+    </section>
+
+    <!-- Search and Filter Section -->
+    <section class="jobs-search">
+        <div class="container">
+            <div class="search-filters">
+                <div class="search-box">
+                    <input type="text" id="jobSearchInput" placeholder="Search jobs by title or company...">
+                    <button id="jobSearchBtn" class="search-btn">Search</button>
+                </div>
+                <div class="filter-actions">
+                    <button id="clearFilters" class="btn btn-secondary">Clear Filters</button>
+                    <button id="refreshJobs" class="btn btn-primary">Refresh</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs Listing -->
+    <section class="jobs-listing">
+        <div class="container">
+            <div class="jobs-header">
+                <h2>Available Positions</h2>
+                <div id="jobsCount" class="jobs-count">Loading jobs...</div>
+            </div>
+            
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Loading jobs...</p>
+            </div>
+
+            <!-- Jobs Container -->
+            <div id="jobsContainer" class="jobs-container">
+                <!-- Jobs will be loaded here by JavaScript -->
+            </div>
+
+            <!-- No Jobs Found -->
+            <div id="noJobsFound" class="no-jobs-found" style="display: none;">
+                <div class="no-jobs-content">
+                    <h3>No Jobs Found</h3>
+                    <p>Sorry, we couldn't find any jobs matching your criteria.</p>
+                    <button onclick="clearJobSearch()" class="btn btn-primary">Clear Search</button>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-state" style="display: none;">
+                <div class="error-content">
+                    <h3>Oops! Something went wrong</h3>
+                    <p>We're having trouble loading the jobs. Please try again.</p>
+                    <button onclick="loadJobs()" class="btn btn-primary">Try Again</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JobPortal</h3>
+                    <p>Connecting talent with opportunities worldwide</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="jobs.html">Jobs</a></li>
+                        <li><a href="post-job.html">Post Job</a></li>
+                        <li><a href="auth.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@jobportal.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JobPortal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Job Application Modal -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Apply for Job</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="modalJobInfo"></div>
+                <p><strong>Note:</strong> This is a demo application. In a real application, you would submit your resume and cover letter here.</p>
+                <div class="modal-actions">
+                    <button id="confirmApplication" class="btn btn-primary">Submit Application</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

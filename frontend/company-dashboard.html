@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Dashboard - University Placement Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🎓 PlacementPortal</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="placement-drives.html" class="nav-link">Placement Drives</a>
+                </li>
+                <li class="nav-item">
+                    <a href="student-dashboard.html" class="nav-link">Student Portal</a>
+                </li>
+                <li class="nav-item">
+                    <a href="company-dashboard.html" class="nav-link active">Company Portal</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="logoutBtn">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="welcome-section">
+                <h1>Welcome, <span id="companyName">Company</span>!</h1>
+                <p>Manage your placement drives and recruit talented students</p>
+            </div>
+            <div class="profile-actions">
+                <button class="btn btn-primary" id="createDriveBtn">Create New Drive</button>
+                <button class="btn btn-secondary" id="viewStudentsBtn">Browse Students</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Stats -->
+    <section class="dashboard-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📋</div>
+                    <div class="stat-info">
+                        <h3 id="activeDrivesCount">0</h3>
+                        <p>Active Drives</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3 id="totalApplicationsCount">0</h3>
+                        <p>Total Applications</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <h3 id="shortlistedCount">0</h3>
+                        <p>Shortlisted</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-info">
+                        <h3 id="selectedCount">0</h3>
+                        <p>Selected</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="dashboard-content">
+        <div class="container">
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" data-tab="drives">My Drives</button>
+                <button class="tab-btn" data-tab="applications">Applications</button>
+                <button class="tab-btn" data-tab="students">Student Database</button>
+                <button class="tab-btn" data-tab="profile">Company Profile</button>
+            </div>
+
+            <!-- Drives Tab -->
+            <div id="drives" class="tab-content active">
+                <div class="drives-section">
+                    <div class="section-header">
+                        <h2>My Placement Drives</h2>
+                        <button class="btn btn-primary" id="newDriveBtn">+ New Drive</button>
+                    </div>
+                    <div id="companyDrivesContainer" class="drives-list">
+                        <!-- Company drives will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applications Tab -->
+            <div id="applications" class="tab-content">
+                <div class="applications-section">
+                    <h2>Student Applications</h2>
+                    <div class="filter-bar">
+                        <select id="driveFilter">
+                            <option value="">All Drives</option>
+                        </select>
+                        <select id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="applied">Applied</option>
+                            <option value="shortlisted">Shortlisted</option>
+                            <option value="rejected">Rejected</option>
+                            <option value="selected">Selected</option>
+                        </select>
+                    </div>
+                    <div id="applicationsContainer" class="applications-list">
+                        <!-- Applications will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Students Tab -->
+            <div id="students" class="tab-content">
+                <div class="students-section">
+                    <h2>Student Database</h2>
+                    <div class="filter-bar">
+                        <input type="text" id="studentSearchInput" placeholder="Search by name or skills...">
+                        <select id="departmentFilter">
+                            <option value="">All Departments</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Information Technology">Information Technology</option>
+                            <option value="Electronics">Electronics</option>
+                        </select>
+                        <select id="cgpaFilter">
+                            <option value="">All CGPA</option>
+                            <option value="9+">9.0+</option>
+                            <option value="8+">8.0+</option>
+                            <option value="7+">7.0+</option>
+                        </select>
+                    </div>
+                    <div id="studentsContainer" class="students-list">
+                        <!-- Students will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profile" class="tab-content">
+                <div class="profile-section">
+                    <h2>Company Profile</h2>
+                    <div class="profile-grid">
+                        <div class="profile-card">
+                            <h3>Company Information</h3>
+                            <div class="info-group">
+                                <label>Company Name:</label>
+                                <span id="profileCompanyName">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Industry:</label>
+                                <span id="profileIndustry">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Website:</label>
+                                <span id="profileWebsite">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Location:</label>
+                                <span id="profileLocation">-</span>
+                            </div>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Contact Details</h3>
+                            <div class="info-group">
+                                <label>HR Contact:</label>
+                                <span id="profileHRContact">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>HR Email:</label>
+                                <span id="profileHREmail">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Phone:</label>
+                                <span id="profilePhone">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Status:</label>
+                                <span id="profileStatus" class="status-badge">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="editCompanyProfileBtn">Edit Profile</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Drive Modal -->
+    <div id="driveModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Placement Drive</h2>
+            <form id="driveForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="driveTitle">Position Title:</label>
+                        <input type="text" id="driveTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="driveCTC">CTC (LPA):</label>
+                        <input type="number" id="driveCTC" step="0.1" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="driveDescription">Job Description:</label>
+                    <textarea id="driveDescription" rows="4" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="driveLocation">Location:</label>
+                        <input type="text" id="driveLocation" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="driveMode">Work Mode:</label>
+                        <select id="driveMode" required>
+                            <option value="">Select Mode</option>
+                            <option value="On-site">On-site</option>
+                            <option value="Remote">Remote</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="driveMinCGPA">Minimum CGPA:</label>
+                        <input type="number" id="driveMinCGPA" step="0.1" min="0" max="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="driveDeadline">Application Deadline:</label>
+                        <input type="datetime-local" id="driveDeadline" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="driveSkills">Required Skills (comma-separated):</label>
+                    <input type="text" id="driveSkills" placeholder="JavaScript, React, Node.js">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelDriveBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Drive</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🎓 PlacementPortal</h3>
+                    <p>Your partner in talent acquisition</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Company Resources</h4>
+                    <ul>
+                        <li><a href="#" id="hiringGuideLink">Hiring Guide</a></li>
+                        <li><a href="#" id="talentPoolLink">Talent Pool</a></li>
+                        <li><a href="#" id="partnershipsLink">University Partnerships</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <p>Email: companies@university.edu</p>
+                    <p>Phone: +91-xxx-xxx-xxxx</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 University Placement Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

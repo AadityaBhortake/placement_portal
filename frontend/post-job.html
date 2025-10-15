@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job - Job Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>JobPortal</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="jobs.html" class="nav-link">Jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a href="post-job.html" class="nav-link active">Post Job</a>
+                </li>
+                <li class="nav-item">
+                    <a href="auth.html" class="nav-link">Login/Register</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Post a Job</h1>
+            <p>Find the perfect candidate for your open position</p>
+        </div>
+    </section>
+
+    <!-- Post Job Form -->
+    <section class="post-job-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Job Details</h2>
+                    <p>Please fill in all the required information about the job position</p>
+                </div>
+
+                <form id="postJobForm" class="job-form">
+                    <!-- Job Title -->
+                    <div class="form-group">
+                        <label for="jobTitle" class="form-label">
+                            Job Title <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="jobTitle" 
+                            name="title" 
+                            class="form-input" 
+                            placeholder="e.g. Frontend Developer, Marketing Manager"
+                            required
+                        >
+                        <div class="form-error" id="titleError"></div>
+                    </div>
+
+                    <!-- Company Name -->
+                    <div class="form-group">
+                        <label for="companyName" class="form-label">
+                            Company Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="companyName" 
+                            name="company" 
+                            class="form-input" 
+                            placeholder="e.g. TechCorp Inc., Startup XYZ"
+                            required
+                        >
+                        <div class="form-error" id="companyError"></div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-group">
+                        <label for="jobLocation" class="form-label">
+                            Location <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="jobLocation" 
+                            name="location" 
+                            class="form-input" 
+                            placeholder="e.g. New York, NY | Remote | San Francisco, CA"
+                            required
+                        >
+                        <div class="form-error" id="locationError"></div>
+                    </div>
+
+                    <!-- Job Description -->
+                    <div class="form-group">
+                        <label for="jobDescription" class="form-label">
+                            Job Description <span class="required">*</span>
+                        </label>
+                        <textarea 
+                            id="jobDescription" 
+                            name="description" 
+                            class="form-textarea" 
+                            rows="8"
+                            placeholder="Describe the job responsibilities, requirements, qualifications, and any other relevant details..."
+                            required
+                        ></textarea>
+                        <div class="form-error" id="descriptionError"></div>
+                        <div class="form-help">
+                            Include job responsibilities, required qualifications, experience level, and benefits.
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" id="previewBtn" class="btn btn-secondary">
+                            Preview Job
+                        </button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary">
+                            <span class="btn-text">Post Job</span>
+                            <span class="btn-loading" style="display: none;">
+                                <span class="loading-spinner"></span>
+                                Posting...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Job Preview -->
+            <div id="jobPreview" class="job-preview" style="display: none;">
+                <div class="preview-header">
+                    <h3>Job Preview</h3>
+                    <button id="closePreview" class="close-preview">&times;</button>
+                </div>
+                <div id="previewContent" class="preview-content">
+                    <!-- Preview content will be generated here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header success">
+                <h3>✅ Job Posted Successfully!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Your job posting has been successfully submitted and is now live on our job portal.</p>
+                <div class="modal-actions">
+                    <a href="jobs.html" class="btn btn-primary">View All Jobs</a>
+                    <button onclick="postAnotherJob()" class="btn btn-secondary">Post Another Job</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tips Section -->
+    <section class="tips-section">
+        <div class="container">
+            <h3>Tips for Writing a Great Job Post</h3>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">💡</div>
+                    <h4>Be Specific</h4>
+                    <p>Include specific skills, experience level, and technologies required for the position.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🎯</div>
+                    <h4>Clear Title</h4>
+                    <p>Use a clear, descriptive job title that candidates would search for.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">📝</div>
+                    <h4>Detailed Description</h4>
+                    <p>Provide comprehensive information about responsibilities and company culture.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🌟</div>
+                    <h4>Highlight Benefits</h4>
+                    <p>Mention salary range, benefits, remote work options, and growth opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JobPortal</h3>
+                    <p>Connecting talent with opportunities worldwide</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="jobs.html">Jobs</a></li>
+                        <li><a href="post-job.html">Post Job</a></li>
+                        <li><a href="auth.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@jobportal.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JobPortal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

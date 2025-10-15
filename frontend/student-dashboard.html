@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - University Placement Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🎓 PlacementPortal</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="placement-drives.html" class="nav-link">Placement Drives</a>
+                </li>
+                <li class="nav-item">
+                    <a href="student-dashboard.html" class="nav-link active">Student Portal</a>
+                </li>
+                <li class="nav-item">
+                    <a href="company-dashboard.html" class="nav-link">Company Portal</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="logoutBtn">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="welcome-section">
+                <h1>Welcome, <span id="studentName">Student</span>!</h1>
+                <p>Manage your profile, applications, and placement activities</p>
+            </div>
+            <!-- profile-actions buttons removed -->
+        </div>
+    </section>
+
+    <!-- Dashboard Stats -->
+    <section class="dashboard-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-info">
+                        <h3 id="applicationsCount">0</h3>
+                        <p>Applications Submitted</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-info">
+                        <h3 id="pendingCount">0</h3>
+                        <p>Under Review</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-info">
+                        <h3 id="shortlistedCount">0</h3>
+                        <p>Shortlisted</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎉</div>
+                    <div class="stat-info">
+                        <h3 id="selectedCount">0</h3>
+                        <p>Selected</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="dashboard-content">
+        <div class="container">
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" data-tab="profile">Profile</button>
+                <button class="tab-btn" data-tab="applications">My Applications</button>
+                <button class="tab-btn" data-tab="drives">Available Drives</button>
+                <button class="tab-btn" data-tab="interviews">Interviews</button>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profile" class="tab-content active">
+                <div class="profile-section">
+                    <h2>Student Profile</h2>
+                    <div class="profile-grid">
+                        <div class="profile-card">
+                            <h3>Personal Information</h3>
+                            <div class="info-group">
+                                <label>Name:</label>
+                                <span id="profileName">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Student ID:</label>
+                                <span id="profileStudentId">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Email:</label>
+                                <span id="profileEmail">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Phone:</label>
+                                <span id="profilePhone">-</span>
+                            </div>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Academic Details</h3>
+                            <div class="info-group">
+                                <label>Department:</label>
+                                <span id="profileDepartment">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Year:</label>
+                                <span id="profileYear">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>CGPA:</label>
+                                <span id="profileCGPA">-</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Skills:</label>
+                                <div id="profileSkills" class="skills-container">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applications Tab -->
+            <div id="applications" class="tab-content">
+                <div class="applications-section">
+                    <h2>My Applications</h2>
+                    <div id="applicationsContainer" class="applications-list">
+                        <!-- Applications will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Drives Tab -->
+            <div id="drives" class="tab-content">
+                <div class="drives-section">
+                    <h2>Available Placement Drives</h2>
+                    <div id="eligibleDrivesContainer" class="drives-list">
+                        <!-- Eligible drives will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interviews Tab -->
+            <div id="interviews" class="tab-content">
+                <div class="interviews-section">
+                    <h2>Scheduled Interviews</h2>
+                    <div id="interviewsContainer" class="interviews-list">
+                        <!-- Interviews will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Edit Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="editName">Name:</label>
+                    <input type="text" id="editName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPhone">Phone:</label>
+                    <input type="tel" id="editPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="editAddress">Address:</label>
+                    <input type="text" id="editAddress" required>
+                </div>
+                <div class="form-group">
+                    <label for="editSkills">Skills (comma-separated):</label>
+                    <input type="text" id="editSkills" placeholder="JavaScript, Python, React">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelEditBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🎓 PlacementPortal</h3>
+                    <p>Your gateway to successful career placement</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Student Resources</h4>
+                    <ul>
+                        <li><a href="#" id="resumeGuideLink">Resume Writing Guide</a></li>
+                        <li><a href="#" id="interviewTipsLink">Interview Tips</a></li>
+                        <li><a href="#" id="careerGuidanceLink">Career Guidance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Support</h4>
+                    <p>Email: support@university.edu</p>
+                    <p>Phone: +91-xxx-xxx-xxxx</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 University Placement Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
