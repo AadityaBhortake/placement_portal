@@ -66,11 +66,6 @@ placement-portal/
 │   └── script.js            # JavaScript functionality
 └── backend/                 # Server-side files
     ├── server.js            # Express server
-    └── data/                # Data storage
-        ├── students.json    # Student profiles
-        ├── companies.json   # Company profiles
-        ├── placements.json  # Placement drives
-        └── applications.json# Student applications
 ```
 
 ## 🚦 Getting Started
@@ -298,27 +293,3 @@ The application is fully responsive and includes:
 - HTTPS enforcement
 - Environment variable configuration
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Contributions are welcome! To contribute:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📞 Support
-
-For questions or issues:
-- Create an issue in the repository
-- Check the documentation
-- Review the code comments for implementation details
-
----
-
-**Happy Job Hunting! 🎯**
