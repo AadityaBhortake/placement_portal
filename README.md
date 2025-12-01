@@ -1,4 +1,4 @@
-v# Placement Portal Application
+# Placement Portal Application
 
 A comprehensive placement portal web application for educational institutions built with Node.js, Express, and vanilla HTML/CSS/JavaScript. This system facilitates campus recruitment and placement activities for students, companies, and placement coordinators.
 
