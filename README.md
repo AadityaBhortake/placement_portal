@@ -281,15 +281,4 @@ The application is fully responsive and includes:
 - Responsive grid layouts for job cards
 - Optimized typography for small screens
 
-## 🔒 Security Considerations
-
-**Note**: This is a demo application. For production use, implement:
-
-- Password hashing (bcrypt)
-- JWT-based authentication
-- Input sanitization
-- CSRF protection
-- Rate limiting
-- HTTPS enforcement
-- Environment variable configuration
 
