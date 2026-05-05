@@ -3,19 +3,26 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config();
 
 const mongoose = require('mongoose');
 
-// Use MONGO_URL from environment (set in docker-compose) or fallback to localhost
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/PlacementPortal';
+// Use MONGO_URL from environment (Render/MongoDB Atlas) or fallback to local MongoDB.
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/PlacementPortal';
+const MONGO_SOURCE = process.env.MONGO_URL ? 'environment' : 'local fallback';
 
 // Retry connect because docker-compose 'depends_on' doesn't guarantee DB readiness
 const connectWithRetry = async (retries = 10, delayMs = 3000) => {
+  if (typeof MONGO_URL !== 'string' || !MONGO_URL.trim()) {
+    console.error('MONGO_URL is not configured. Set it in the environment or .env file.');
+    process.exit(1);
+  }
+
   for (let i = 0; i < retries; i++) {
     try {
       // Mongoose v6+ uses sensible defaults; don't pass deprecated options.
       await mongoose.connect(MONGO_URL);
-      console.log('MongoDB connected to', MONGO_URL);
+      console.log(`MongoDB connected using ${MONGO_SOURCE}; database=${mongoose.connection.name}`);
       return;
     } catch (err) {
       console.error(`MongoDB connection attempt ${i + 1} failed:`, err.message);

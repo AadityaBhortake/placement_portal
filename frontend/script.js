@@ -413,7 +413,7 @@ function createPlacementCard(placement) {
                     <div class="placement-actions">
                         ${currentRole === 'student' ? 
                             `<button class="btn btn-primary btn-sm" onclick="applyToPlacement(${placement.id})">Apply Now</button>` : 
-                            `<button class="btn btn-secondary btn-sm">View Details</button>`
+                            ''
                         }
                     </div>
                 </div>
