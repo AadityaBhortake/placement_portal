@@ -30,7 +30,7 @@ A comprehensive placement portal web application for educational institutions bu
 - **Clean UI**: Modern, professional interface with institutional branding
 - **Real-time Search**: Instant filtering for students, companies, and drives
 - **Form Validation**: Comprehensive client and server-side validation
-- **Role-based Access**: Different interfaces for students, companies, and admins
+- **Role-based Access**: Different interfaces for students, companies, and admins.
 
 ## 🛠️ Tech Stack
 
